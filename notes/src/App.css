@@ -24,9 +24,25 @@
 .headerbar {
   display: flex;
   justify-content: space-between;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 30%;
+  padding-right: 30%;
   width: 100vw;
+}
+
+.title {
+  margin: 5px auto !important;
+}
+
+.closeButton {
+  position: relative;
+  right: -40%;
+}
+
+.author {
+  display: flex;
+  width: 70%;
+  justify-content: space-between;
+  margin: 5px auto;
 }
 
 .userinput {
