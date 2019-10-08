@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+body {
+  font-size: 62.5%
+}
+
 .App-logo {
   height: 40vmin;
 }
@@ -24,25 +28,20 @@
 .headerbar {
   display: flex;
   justify-content: space-between;
-  padding-left: 30%;
-  padding-right: 30%;
-  width: 100vw;
-}
-
-.title {
-  margin: 5px auto !important;
+  width: 20vw;
+  height: 60vh;
 }
 
 .closeButton {
   position: relative;
-  right: -40%;
+  right: -6vw;
+  top: -1vh;
 }
 
 .author {
   display: flex;
-  width: 70%;
-  justify-content: space-between;
-  margin: 5px auto;
+  width: 100%;
+  flex-direction: column;
 }
 
 .userinput {
@@ -51,5 +50,14 @@
 
 .userform {
   display: flex;
+  flex-direction: column;
 }
 
+.userform button {
+  width: 40%;
+  align-self: flex-end
+}
+
+.submitButton {
+  width: 100%;
+}

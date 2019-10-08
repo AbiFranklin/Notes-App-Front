@@ -38,29 +38,29 @@ function App() {
           open={open}
           onClick={() => setOpen(true)}
           dropContent={
-            <Box align="center" background="neutral-3" pad="medium" direction="column" className="headerbar">
+            <Box align="center" background="neutral-3" pad="medium" className="headerbar">
               <Button label="X" icon="Close"
                   onClick={() => setOpen(false)}
                   color="status-critical"
                   className="closeButton"
                 />
               <TextInput placeholder="Title" className="title"/>
-              <TextArea placeholder="Message" />
+              <TextArea placeholder="Message" className="message"/>
               <div className="author">
                 <div>
-              Signed,
+              <h3>Signed, </h3>
               <Select
               options={users}
               value={currentUser}
               onChange={({ option }) => setCurrentUser(option)}
               /></div>
+              <p> or... </p>
               <Form onSubmit={({ value }) => addUser(value.name)} className="userform">
                 <FormField name="name" placeholder="New User" className="userinput" />
-                <Button margin="small" type="submit" primary label="Add New User" />
+                <Button margin="small" type="submit" primary label="Add User" />
               </Form>
               </div>
-              <Button label="Submit Message"
-                />
+              <Button label="Submit Message" className="submitButton"/>
             </Box>
           }
         />
