@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
 import Display from './Components/Display'
+import AddNote from './Components/AddNote'
 import { Grommet, Box, Button, Select, Form, FormField, DropButton, TextArea, TextInput } from 'grommet'
 import axios from 'axios'
+
 
 
 
@@ -33,37 +35,22 @@ function App() {
 
   return (
     <Grommet>
-      <DropButton
-          label='New Message'
-          open={open}
-          onClick={() => setOpen(true)}
-          dropContent={
-            <Box align="center" background="neutral-3" pad="medium" className="headerbar">
-              <Button label="X" icon="Close"
-                  onClick={() => setOpen(false)}
-                  color="status-critical"
-                  className="closeButton"
-                />
-              <TextInput placeholder="Title" className="title"/>
-              <TextArea placeholder="Message" className="message"/>
-              <div className="author">
-                <div>
-              <h3>Signed, </h3>
-              <Select
-              options={users}
-              value={currentUser}
-              onChange={({ option }) => setCurrentUser(option)}
-              /></div>
-              <p> or... </p>
-              <Form onSubmit={({ value }) => addUser(value.name)} className="userform">
-                <FormField name="name" placeholder="New User" className="userinput" />
-                <Button margin="small" type="submit" primary label="Add User" />
-              </Form>
-              </div>
-              <Button label="Submit Message" className="submitButton"/>
-            </Box>
-          }
-        />
+      <AddNote 
+        users={users} 
+        addUser={addUser} 
+        currentUser={currentUser} 
+        setCurrentUser={setCurrentUser}
+        open={open}
+        setOpen={setOpen} />
+        <Box
+  direction="row" round={true}
+  border={{ color: 'accent-3', size: 'medium' }}
+  pad="medium"
+  margin="small"
+>
+  <Box pad="small" background="dark-3" />
+  <Box pad="medium" background="light-3" />
+</Box>
 
       
     </Grommet>
