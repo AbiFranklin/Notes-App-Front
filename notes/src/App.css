@@ -1,9 +1,14 @@
 .App {
   text-align: center;
+  
 }
 
 body {
-  font-size: 62.5%
+  font-size: 62.5%;
+  background-image: url('./retro.svg');
+  background-size: 75vw;
+  background-position-x: 130%;
+  background-repeat: no-repeat
 }
 
 .App-logo {
