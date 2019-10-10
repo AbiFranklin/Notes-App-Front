@@ -72,3 +72,22 @@ body {
   margin: 100px auto !important;
   font-size: 2.4em;
 }
+
+.card {
+  width: 350px;
+  margin: 10px;
+  padding: 10px;
+}
+
+.card h3 {
+  margin-top: -5px
+}
+
+.card p {
+  font-style: italic;
+  font-size: 1.0em;
+  color: grey;
+  position: relative;
+  top: -15px;
+  margin-bottom: 0px
+}

@@ -37,7 +37,7 @@ function AddNote(props) {
                     <div>
                         <h3>Signed, </h3>
                         <Select
-                          options={props.usernames}
+                          options={props.users}
                           value={props.currentUser}
                           onChange={({ option }) => props.setCurrentUser(option)}/>
                     </div>
@@ -58,9 +58,7 @@ function AddNote(props) {
                 </div>
                 <Button 
                   label="Submit Message" 
-                  className="submitButton"
-                  onSubmit={
-                    ()=> props.addPost({title: document.getElementsByClassName("title").value , text: document.getElementsByClassName("message").value})}/>
+                  className="submitButton"/>
             </Box>
         }/>
     </Grommet>

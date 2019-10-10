@@ -9,39 +9,38 @@ import axios from 'axios'
 
 
 function App() {
-  const [users, setUsers] = useState({ users: [] });
+  const [users, setUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState('');
   const [open, setOpen] = useState(false);
-  const [posts, setPosts] = useState({ posts: [] });
+  const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true)
   
-  let userArray = []
-  let postArray = []
 
   useEffect(async () => {
     await axios.get('https://notesappschmidts.herokuapp.com/users')
       .then(result => {
-        result.data.forEach(user => {userArray.push([user.username, user.id])});
-        setUsers(userArray);
-        setCurrentUser(userArray[0])
+        result.data.forEach(user => users.push(user))
+        setCurrentUser(users[0].username)
+
       })
       .catch(err => console.log(err))
-    // const postcall = await axios(
-    //   'https://notesappschmidts.herokuapp.com/posts',
-    // );
-    // postcall.data.forEach(post => {userArray.push([post.title, post.text, post.user_id])})
-    // setPosts(postArray);
-
+      await axios.get('https://notesappschmidts.herokuapp.com/posts')
+      .then(result => {
+        result.data.forEach(post => posts.push(post))
+        setLoading(false)
+      })
+      .catch(err => console.log(err))
   }, []);
 
 
   let usernames = []
-  userArray.forEach(user => {usernames.push(user[0])})
+  users.forEach(user => {usernames.push(user.username)})
   
 
   let addUser = (user) => {
     axios.post('https://notesappschmidts.herokuapp.com/createUser', {username:user})
     .then(setCurrentUser(user))
+    .then(usernames.push(user))
     .catch(err => {
       console.log(err)
     })
@@ -78,9 +77,10 @@ function App() {
         currentUser={currentUser} 
         setCurrentUser={setCurrentUser}
         open={open}
-        setOpen={setOpen}
-        addPost={addPost} />
-      <Board />
+        setOpen={setOpen} />
+      <Board
+       posts={posts}
+       users={users} />
     </Grommet>
   )}
 }
