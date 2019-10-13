@@ -1,14 +1,6 @@
 import React from 'react';
-import { Grommet, 
-        Box, 
-        Button, 
-        Select, 
-        Form, 
-        FormField, 
-        DropButton, 
-        TextArea, 
-        TextInput } from 'grommet';
-import { Card, CardHeader } from '@material-ui/core'
+import { Box} from 'grommet';
+import Masonry from 'react-masonry-css'
 
 function Board(props) {
  console.log(props.users)
@@ -24,11 +16,17 @@ function Board(props) {
  let titles = () => {
    return (
    props.posts.map(post => {return (
-   <Box border={{ color: 'accent-3', size: 'medium' }} margin="medium" pad="medium" round={true} background={{"color": "light-1", "opacity": "strong"}} className="card">
-    <h3>{post.title}</h3>
-    <p>{userName(post.user_id)}</p>
-    {post.text}
-    </Box>)})
+    <Box
+    direction="row" 
+    round={true}
+    background={{"color": "light-1", "opacity": "medium"}}
+    border={{ color: 'accent-3', size: 'medium' }}
+    pad="medium"
+    margin="small"> 
+      <h3>{post.title}</h3>
+      <p>{userName(post.user_id)}</p>
+      {post.text}
+      </Box>)})
    )
  }
 
@@ -39,9 +37,15 @@ function Board(props) {
         background={{"color": "light-1", "opacity": "medium"}}
         border={{ color: 'accent-3', size: 'medium' }}
         pad="medium"
-        margin="small"> 
-        {titles()}
-    </Box>
+        margin="small"
+        justofy="center"> 
+          <Masonry
+          breakpointCols={{default: 5, 1200: 4, 1000: 3, 800: 2, 600: 1}}
+          className="my-masonry-grid"
+          columnClassName="my-masonry-grid_column">
+            {titles()}
+          </Masonry>
+      </Box>
   );
 }
 export default Board;
