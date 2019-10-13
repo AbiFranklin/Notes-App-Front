@@ -12,6 +12,7 @@ import { Grommet,
 
 function AddNote(props) {
 
+
   return (
     <Grommet>
         <DropButton
@@ -31,8 +32,8 @@ function AddNote(props) {
                 onClick={() => props.setOpen(false)}
                 color="status-critical"
                 className="closeButton"/>
-                <TextInput placeholder="Title" className="title"/>
-                <TextArea placeholder="Message" className="message"/>
+                <TextInput placeholder="Title" className="title" id="title" />
+                <TextArea placeholder="Message" className="message" id="text" />
                 <div className="author">
                     <div>
                         <h3>Signed, </h3>
@@ -58,7 +59,11 @@ function AddNote(props) {
                 </div>
                 <Button 
                   label="Submit Message" 
-                  className="submitButton"/>
+                  className="submitButton"
+                  onClick={() => {props.addPost({
+                    title: document.getElementById("title").value, 
+                    text: document.getElementById("text").value, 
+                    user_id: props.currentUser})}}/>
             </Box>
         }/>
     </Grommet>

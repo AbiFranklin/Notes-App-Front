@@ -5,10 +5,6 @@
 
 body {
   font-size: 62.5%;
-  background-image: url('./retro.svg');
-  background-size: 75vw;
-  background-position-x: 130%;
-  background-repeat: no-repeat
 }
 
 .App-logo {
@@ -28,6 +24,17 @@ body {
 
 .App-link {
   color: #09d3ac;
+}
+
+.back {
+  background-image: url('./retro.svg');
+  background-size: 75vw;
+  background-position-x: 130%;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: -1;
 }
 
 .headerbar {
@@ -68,27 +75,32 @@ body {
 }
 
 .loading {
-  width: 10%;
+  width: 15%;
   margin: 100px auto !important;
   font-size: 2.4em;
 }
 
 .card {
   width: 350px;
-  margin: 10px;
-  padding: 10px;
 }
 
 .card h3 {
   margin-top: -5px
 }
 
-.card p {
+.card p:nth-of-type(1) {
   font-style: italic;
   font-size: 1.0em;
   color: grey;
   position: relative;
-  top: -15px;
+  top: -40px;
+  margin-bottom: 0px
+}
+
+.card p {
+  font-size: 1.0em;
+  position: relative;
+  top: -40px;
   margin-bottom: 0px
 }
 
@@ -96,7 +108,8 @@ body {
   display: -webkit-box; /* Not needed if autoprefixing */
   display: -ms-flexbox; /* Not needed if autoprefixing */
   display: flex;
-  width: 90vw;
+  width: 80vw;
+  margin-left: 10px;
 }
 
 .my-masonry-grid_column {

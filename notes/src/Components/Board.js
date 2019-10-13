@@ -1,9 +1,10 @@
 import React from 'react';
-import { Box} from 'grommet';
+import {Box} from 'grommet';
 import Masonry from 'react-masonry-css'
 
 function Board(props) {
- console.log(props.users)
+ 
+  let colors = ["brand", "accent-1", "accent-2", "accent-3", "accent-4"]
 
  let userName = (id) => {
    for(let i=0; i < props.users.length; i++) {
@@ -17,15 +18,16 @@ function Board(props) {
    return (
    props.posts.map(post => {return (
     <Box
-    direction="row" 
+    direction="column" 
     round={true}
     background={{"color": "light-1", "opacity": "medium"}}
-    border={{ color: 'accent-3', size: 'medium' }}
+    border={{ color: colors[Math.floor(Math.random() * 5)], size: 'medium' }}
     pad="medium"
-    margin="small"> 
+    margin="small"
+    className="card"> 
       <h3>{post.title}</h3>
       <p>{userName(post.user_id)}</p>
-      {post.text}
+      <p>{post.text}</p>
       </Box>)})
    )
  }
@@ -37,10 +39,9 @@ function Board(props) {
         background={{"color": "light-1", "opacity": "medium"}}
         border={{ color: 'accent-3', size: 'medium' }}
         pad="medium"
-        margin="small"
-        justofy="center"> 
+        margin="small"> 
           <Masonry
-          breakpointCols={{default: 5, 1200: 4, 1000: 3, 800: 2, 600: 1}}
+          breakpointCols={{default: 4, 1000: 3, 800: 2, 600: 1}}
           className="my-masonry-grid"
           columnClassName="my-masonry-grid_column">
             {titles()}

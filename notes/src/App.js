@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import './App.css';
 import Board from './Components/Board'
 import AddNote from './Components/AddNote'
@@ -14,7 +14,7 @@ function App() {
   const [open, setOpen] = useState(false);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true)
-  
+
 
   useEffect(async () => {
     await axios.get('https://notesappschmidts.herokuapp.com/users')
@@ -27,6 +27,7 @@ function App() {
       await axios.get('https://notesappschmidts.herokuapp.com/posts')
       .then(result => {
         result.data.forEach(post => posts.push(post))
+        posts.reverse()
         setLoading(false)
       })
       .catch(err => console.log(err))
@@ -46,14 +47,12 @@ function App() {
     })
   }
   
-  let addPost = (post) => {
-    axios.post('https://notesappschmidts.herokuapp.com/createPost', {title: post.title, text: post.text, user_id: 1})
-    .then(post => { 
-      setPosts(posts => [...posts, [post.title, post.text, currentUser]])},
-      console.log(posts))
+  let addPost = async (post) => {
+    await axios.post('https://notesappschmidts.herokuapp.com/createPost', {title: post.title, text: post.text, user_id: 1})
+    .then(posts.unshift(post))
+    .then(setOpen(false))
     .catch(err => {
-      console.log(err)
-    })
+      console.log(err)})
   }
 
   if (loading) {
@@ -65,19 +64,22 @@ function App() {
     animation="pulse"
     round={true}
     elevation="xlarge"
-    className="loading">
+    className="loading"
+    justify= "center">
     Loading...
     </Box>
    )} else { 
   return (
     <Grommet>
+      <div className="back"></div>
       <AddNote 
         users={usernames} 
         addUser={addUser} 
         currentUser={currentUser} 
         setCurrentUser={setCurrentUser}
         open={open}
-        setOpen={setOpen} />
+        setOpen={setOpen}
+        addPost={addPost} />
       <Board
        posts={posts}
        users={users} />
