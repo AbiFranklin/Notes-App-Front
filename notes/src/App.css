@@ -40,8 +40,8 @@ body {
 .headerbar {
   display: flex;
   justify-content: space-between;
-  width: 20vw;
-  height: 60vh;
+  width: 25vw;
+  height: 70vh;
 }
 
 .closeButton {
@@ -117,3 +117,29 @@ body {
   background-clip: padding-box;
 }
 
+
+.newMessage {
+  position: relative;
+  top: 20px;
+  left: 20px;
+}
+
+.board {
+  position: relative;
+  top: 40px;
+}
+
+.message {
+  margin-top: 10px !important;
+  height: 500px !important;
+}
+
+.delbutton {
+  position: relative !important;
+  margin-left: 99% !important;
+  margin-top: -7% !important;
+  width: 5px;
+  display: flex !important; 
+  justify-content: center !important;
+  color: #FF4040 !important;
+}

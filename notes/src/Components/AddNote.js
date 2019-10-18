@@ -18,6 +18,7 @@ function AddNote(props) {
         <DropButton
         label='New Message'
         open={props.open}
+        className="newMessage"
         onClick={() => props.setOpen(true)}
         dropContent={
             <Box 
@@ -53,13 +54,13 @@ function AddNote(props) {
                     <Button 
                       margin="small" 
                       type="submit" 
-                      primary 
                       label="Add User" />
                     </Form>
                 </div>
                 <Button 
                   label="Submit Message" 
                   className="submitButton"
+                  primary
                   onClick={() => {props.addPost({
                     title: document.getElementById("title").value, 
                     text: document.getElementById("text").value, 

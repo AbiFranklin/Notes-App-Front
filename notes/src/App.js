@@ -15,6 +15,16 @@ function App() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true)
 
+  let getPosts = (async() => {
+    await axios.get('https://notesappschmidts.herokuapp.com/posts')
+      .then(result => {
+        result.data.forEach(post => posts.push(post))
+        posts.reverse()
+        setLoading(false)
+      })
+      .catch(err => console.log(err))
+  })
+
 
   useEffect(async () => {
     await axios.get('https://notesappschmidts.herokuapp.com/users')
@@ -24,13 +34,7 @@ function App() {
 
       })
       .catch(err => console.log(err))
-      await axios.get('https://notesappschmidts.herokuapp.com/posts')
-      .then(result => {
-        result.data.forEach(post => posts.push(post))
-        posts.reverse()
-        setLoading(false)
-      })
-      .catch(err => console.log(err))
+      getPosts()
   }, []);
 
 
@@ -53,6 +57,15 @@ function App() {
     .then(setOpen(false))
     .catch(err => {
       console.log(err)})
+  }
+
+  let deletePost = async (id) => {
+    await axios.delete(`https://notesappschmidts.herokuapp.com/posts/${id}`)
+    .then(posts => {console.log(posts)})
+    .catch(err => {
+      console.log(err)
+    })
+    window.location.reload()
   }
 
   if (loading) {
@@ -82,7 +95,8 @@ function App() {
         addPost={addPost} />
       <Board
        posts={posts}
-       users={users} />
+       users={users}
+       delPost = {deletePost} />
     </Grommet>
   )}
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box} from 'grommet';
+import {Box, Button} from 'grommet';
 import Masonry from 'react-masonry-css'
 
 function Board(props) {
@@ -25,6 +25,7 @@ function Board(props) {
     pad="medium"
     margin="small"
     className="card"> 
+      <Button label="X" plain color="status-error" className="delbutton" onClick={()=>{props.delPost(post.id)}} />
       <h3>{post.title}</h3>
       <p>{userName(post.user_id)}</p>
       <p>{post.text}</p>
@@ -35,6 +36,7 @@ function Board(props) {
   return (
       <Box
         direction="row" 
+        className="board"
         round={true}
         background={{"color": "light-1", "opacity": "medium"}}
         border={{ color: 'accent-3', size: 'medium' }}
