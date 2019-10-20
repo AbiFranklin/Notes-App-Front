@@ -48,6 +48,10 @@ function App() {
     return users[index].id
   } 
   
+  let findPostId = (id) => {
+    let index = posts.findIndex(x => x.id ===`${id}`);
+    return index
+  } 
 
   let addUser = (user) => {
     axios.post('https://notesappschmidts.herokuapp.com/createUser', {username:user})
@@ -65,12 +69,20 @@ function App() {
     .then(setOpen(false))
     .catch(err => {
       console.log(err)})
-    // window.location.reload()
   }
 
   let deletePost = async (id) => {
     await axios.delete(`https://notesappschmidts.herokuapp.com/posts/${id}`)
-    .then(posts => {console.log(posts)})
+    .catch(err => {
+      console.log(err)
+    })
+    window.location.reload()
+  }
+
+  let deleteUser = async (id) => {
+    console.log(id)
+    await axios.delete(`https://notesappschmidts.herokuapp.com/users/${id}`)
+    .then(res => console.log(res.data))
     .catch(err => {
       console.log(err)
     })
@@ -102,7 +114,8 @@ function App() {
         findId={findId}
         open={open}
         setOpen={setOpen}
-        addPost={addPost} />
+        addPost={addPost}
+        deleteUser={deleteUser} />
       <Board
        posts={posts}
        users={users}

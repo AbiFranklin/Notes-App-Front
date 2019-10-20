@@ -42,6 +42,11 @@ function AddNote(props) {
                           options={props.users}
                           value={props.currentUser}
                           onChange={({ option }) => props.setCurrentUser(option)}/>
+                        <Button 
+                        label="Delete User" 
+                        className="submitButton"
+                        primary
+                        onClick={() => {props.deleteUser(props.findId(props.currentUser))}}/>
                     </div>
                     <p> or... </p>
                     <Form 
