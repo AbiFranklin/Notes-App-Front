@@ -143,3 +143,39 @@ body {
   justify-content: center !important;
   color: #FF4040 !important;
 }
+
+.authselect {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 600px) {
+  .back {
+    background-position-y: 100%;
+  }
+  .card {
+    width: 100%;
+    margin-left: -3vw !important;
+  }
+  .delbutton {
+    margin-top: -5% !important;
+  }
+  .hEnyXU {
+    width: 100vw !important;
+  }
+  .headerbar{
+    width: 100%
+  }
+  .closeButton {
+    right: -30vw;
+  }
+  .deluserbutton {
+   width: 20vw !important;
+   font-size: .8em !important;
+   padding-right: 17vw !important;
+   margin-left: 2vw !important;
+  }
+  .loading {
+    width: 50%;
+  }
+}

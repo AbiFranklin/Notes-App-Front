@@ -43,6 +43,8 @@ function App() {
   let usernames = []
   users.forEach(user => {usernames.push(user.username)})
 
+  usernames.sort()
+
   let findId = (name) => {
     let index = users.findIndex(x => x.username ===`${name}`);
     return users[index].id
@@ -61,6 +63,7 @@ function App() {
     .catch(err => {
       console.log(err)
     })
+    window.location.reload()
   }
   
   let addPost = async (post) => {

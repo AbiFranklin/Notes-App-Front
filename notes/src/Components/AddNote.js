@@ -38,15 +38,17 @@ function AddNote(props) {
                 <div className="author">
                     <div>
                         <h3>Signed, </h3>
+                        <div className='authselect'>
                         <Select
                           options={props.users}
                           value={props.currentUser}
                           onChange={({ option }) => props.setCurrentUser(option)}/>
                         <Button 
-                        label="Delete User" 
-                        className="submitButton"
-                        primary
+                        label="Delete User"
+                        className="deluserbutton"
+                        color="status-critical"
                         onClick={() => {props.deleteUser(props.findId(props.currentUser))}}/>
+                        </div>
                     </div>
                     <p> or... </p>
                     <Form 
