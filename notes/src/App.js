@@ -14,6 +14,7 @@ function App() {
   const [open, setOpen] = useState(false);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true)
+  const [currentUserId, setCurrentUserId] = useState(0);
 
   let getPosts = (async() => {
     await axios.get('https://notesappschmidts.herokuapp.com/posts')
@@ -31,20 +32,27 @@ function App() {
       .then(result => {
         result.data.forEach(user => users.push(user))
         setCurrentUser(users[0].username)
-
+        setCurrentUserId(users[0].id)
       })
       .catch(err => console.log(err))
       getPosts()
   }, []);
 
+  
 
   let usernames = []
   users.forEach(user => {usernames.push(user.username)})
+
+  let findId = (name) => {
+    let index = users.findIndex(x => x.username ===`${name}`);
+    return users[index].id
+  } 
   
 
   let addUser = (user) => {
     axios.post('https://notesappschmidts.herokuapp.com/createUser', {username:user})
     .then(setCurrentUser(user))
+    .then(res => {setCurrentUserId(res.data.id)})
     .then(usernames.push(user))
     .catch(err => {
       console.log(err)
@@ -52,11 +60,12 @@ function App() {
   }
   
   let addPost = async (post) => {
-    await axios.post('https://notesappschmidts.herokuapp.com/createPost', {title: post.title, text: post.text, user_id: 1})
+    await axios.post('https://notesappschmidts.herokuapp.com/createPost', {title: post.title, text: post.text, user_id: post.user_id})
     .then(posts.unshift(post))
     .then(setOpen(false))
     .catch(err => {
       console.log(err)})
+    // window.location.reload()
   }
 
   let deletePost = async (id) => {
@@ -90,6 +99,7 @@ function App() {
         addUser={addUser} 
         currentUser={currentUser} 
         setCurrentUser={setCurrentUser}
+        findId={findId}
         open={open}
         setOpen={setOpen}
         addPost={addPost} />

@@ -64,7 +64,7 @@ function AddNote(props) {
                   onClick={() => {props.addPost({
                     title: document.getElementById("title").value, 
                     text: document.getElementById("text").value, 
-                    user_id: props.currentUser})}}/>
+                    user_id: props.findId(props.currentUser)})}}/>
             </Box>
         }/>
     </Grommet>
