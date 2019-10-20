@@ -1,8 +1,8 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import Board from './Components/Board'
 import AddNote from './Components/AddNote'
-import { Grommet, Box, Button, Select, Form, FormField, DropButton, TextArea, TextInput } from 'grommet'
+import { Grommet, Box } from 'grommet'
 import axios from 'axios'
 
 
@@ -27,8 +27,8 @@ function App() {
   })
 
 
-  useEffect(async () => {
-    await axios.get('https://notesappschmidts.herokuapp.com/users')
+  useEffect(() => {
+    axios.get('https://notesappschmidts.herokuapp.com/users')
       .then(result => {
         result.data.forEach(user => users.push(user))
         setCurrentUser(users[0].username)
